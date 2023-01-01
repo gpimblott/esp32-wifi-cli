@@ -75,9 +75,9 @@ void setup() {
   wcli.setCallback(new mESP32WifiCLICallbacks());
   wcli.begin();
   // User custom commands:
-  wcli.term->add("blink", &blink, "\tLED blink x times each x millis");
-  wcli.term->add("echo", &echo, "\tEcho the input message");
-  wcli.term->add("reboot", &reboot, "\tperform a ESP32 reboot");
+  wcli.term->add("blink", "", &blink, "\tLED blink x times each x millis");
+  wcli.term->add("echo", "", &echo, "\tEcho the input message");
+  wcli.term->add("reboot", "", &reboot, "\tperform a ESP32 reboot");
 }
 
 void loop() {

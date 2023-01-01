@@ -118,11 +118,11 @@ void setup() {
   pinMode(LED_PIN, OUTPUT);
 
   // Enter your custom commands:
-  wcli.term->add("sleep", &sleep, "\t<mode> <time> ESP32 will enter to sleep mode");
-  wcli.term->add("echo", &echo, "\t\"message\" Echo the msg. Parameter into quotes");
-  wcli.term->add("setLED", &setLED, "\t<PIN> config the LED GPIO for blink");
-  wcli.term->add("blink", &blink, "\t<times> <millis> LED blink x times each x millis");
-  wcli.term->add("reboot", &reboot, "\tperform a ESP32 reboot");
+  wcli.term->add("sleep","", &sleep, "\t<mode> <time> ESP32 will enter to sleep mode");
+  wcli.term->add("echo", "", &echo, "\t\"message\" Echo the msg. Parameter into quotes");
+  wcli.term->add("setLED", "",  &setLED, "\t<PIN> config the LED GPIO for blink");
+  wcli.term->add("blink", "", &blink, "\t<times> <millis> LED blink x times each x millis");
+  wcli.term->add("reboot", "", &reboot, "\tperform a ESP32 reboot");
 }
 
 void loop() {

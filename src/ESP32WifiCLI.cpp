@@ -407,17 +407,17 @@ void ESP32WifiCLI::begin(long baudrate, String app) {
   reconnect();
   delay(10);
   term = new maschinendeck::SerialTerminal(baudrate);
-  term->add("help", &_printHelp, "\tshow detail usage information");
-  term->add("setSSID", &_setSSID, "\tset the Wifi SSID");
-  term->add("setPASW", &_setPASW, "\tset the WiFi password");
-  term->add("connect", &_connect, "\tsave and connect to WiFi network");
-  term->add("list", &_listNetworks, "\tlist saved WiFi networks");
-  term->add("select", &_selectAP, "\tselect the default AP (default: last)");
-  term->add("mode", &_setMode, "\tset the default operation single/multi AP (slow)");
-  term->add("scan", &_scanNetworks, "\tscan WiFi networks");
-  term->add("status", &_wifiStatus, "\tWiFi status information");
-  term->add("disconnect", &_disconnect, "WiFi disconnect");
-  term->add("delete", &_deleteNetwork, "\tremove saved WiFi network by SSID\r\n");
+  term->add("help", "", &_printHelp, "\tshow detail usage information");
+  term->add("setSSID", "\"SSID\"" , &_setSSID, "\tset the Wifi SSID");
+  term->add("setPASW", "\"Password\"", &_setPASW, "\tset the WiFi password");
+  term->add("connect", "", &_connect, "\tsave and connect to WiFi network");
+  term->add("list", "", &_listNetworks, "\tlist saved WiFi networks");
+  term->add("select", "<number>", &_selectAP, "\tselect the default AP (default: last)");
+  term->add("mode", "<single/multi>", &_setMode, "\tset the default operation single/multi AP (slow)");
+  term->add("scan", "", &_scanNetworks, "\tscan WiFi networks");
+  term->add("status", "", &_wifiStatus, "\tWiFi status information");
+  term->add("disconnect", "", &_disconnect, "WiFi disconnect");
+  term->add("delete", "SSID", &_deleteNetwork, "\tremove saved WiFi network by SSID\r\n");
 }
 
 #if !defined(NO_GLOBAL_INSTANCES) && !defined(NO_GLOBAL_ESP32WIFICLI)
