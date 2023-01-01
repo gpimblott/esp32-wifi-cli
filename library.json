@@ -49,6 +49,6 @@
   "license": "GPL-3.0-only",
   "dependencies":
   [
-    {"name":"SerialTerminal", "version":"https://github.com/hpsaturn/SerialTerminal.git"}
+    {"name":"SerialTerminal", "version":"https://github.com/gpimblott/esp32-serial-terminal.git"}
   ]
 }

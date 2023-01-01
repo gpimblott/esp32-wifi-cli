@@ -15,6 +15,7 @@ void ESP32WifiCLI::printWifiStatus() {
 }
 
 void ESP32WifiCLI::printHelp() {
+  term->printCommands();
   Serial.println("\nESP32WifiCLI Usage:\n");
   Serial.println("setSSID \"YOUR SSID\"\tset the SSID into quotes");
   Serial.println("setPASW \"YOUR PASW\"\tset the password into quotes");
