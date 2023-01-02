@@ -1,7 +1,7 @@
 {
   "name": "ESP32 Wifi CLI",
   "version": "0.1.6",
-  "homepage":"https://github.com/hpsaturn/esp32-wifi-cli#readme",
+  "homepage":"https://github.com/gpimblott/esp32-wifi-cli#readme",
   "keywords": 
   [ 
     "CLI",
@@ -17,7 +17,7 @@
   "repository":
   {
     "type": "git",
-    "url": "https://github.com/hpsaturn/esp32-wifi-cli.git"
+    "url": "https://github.com/gpimblott/esp32-wifi-cli"
   },
   "frameworks": ["espidf", "freertos", "arduino"],
   "platforms":

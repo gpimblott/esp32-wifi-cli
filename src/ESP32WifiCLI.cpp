@@ -1,7 +1,9 @@
 #include <ESP32WifiCLI.hpp>
 
+#define MAX_NETWORKS 99
+
 void ESP32WifiCLI::printWifiStatus() {
-  Serial.print("\nWiFi SSID \t: [");
+  Serial.print( "\nWiFi SSID \t: [");
   Serial.println(WiFi.SSID() + "]");  // Output Network name.
   Serial.print("IP address  \t: ");
   Serial.println(WiFi.localIP());  // Output IP Address.
@@ -16,18 +18,7 @@ void ESP32WifiCLI::printWifiStatus() {
 
 void ESP32WifiCLI::printHelp() {
   term->printCommands();
-  Serial.println("\nESP32WifiCLI Usage:\n");
-  Serial.println("setSSID \"YOUR SSID\"\tset the SSID into quotes");
-  Serial.println("setPASW \"YOUR PASW\"\tset the password into quotes");
-  Serial.println("connect  \t\tsave and connect to the network");
-  Serial.println("list \t\t\tlist all saved networks");
-  Serial.println("select <number>   \tselect the default AP (default: last saved)");
-  Serial.println("mode <single/multi>\tconnection mode. Multi AP is a little slow");
-  Serial.println("scan \t\t\tscan for available networks");
-  Serial.println("status \t\t\tprint the current WiFi status");
-  Serial.println("disconnect \t\tdisconnect from the network");
-  Serial.println("delete \"SSID\"\t\tremove saved network");
-  Serial.println("help \t\t\tprint this help");
+
   if (cb != nullptr) cb->onHelpShow();
 }
 
@@ -51,12 +42,12 @@ void ESP32WifiCLI::status() {
   if (WiFi.status() == WL_CONNECTED) {
     printWifiStatus();
   } else {
-    Serial.println("\nWiFi is not connected");
+    Serial.println(F("\nWiFi is not connected"));
   }
 }
 
 String ESP32WifiCLI::getNetKeyName(int net) {
-  if (net > 99) return "";
+  if (net > MAX_NETWORKS) return "";
   char key[11];
   sprintf(key, "key_net%02d", net);
   return String(key);
@@ -407,17 +398,17 @@ void ESP32WifiCLI::begin(long baudrate, String app) {
   reconnect();
   delay(10);
   term = new maschinendeck::SerialTerminal(baudrate);
-  term->add("help", "", &_printHelp, "\tshow detail usage information");
-  term->add("setSSID", "\"SSID\"" , &_setSSID, "\tset the Wifi SSID");
-  term->add("setPASW", "\"Password\"", &_setPASW, "\tset the WiFi password");
-  term->add("connect", "", &_connect, "\tsave and connect to WiFi network");
-  term->add("list", "", &_listNetworks, "\tlist saved WiFi networks");
-  term->add("select", "<number>", &_selectAP, "\tselect the default AP (default: last)");
-  term->add("mode", "<single/multi>", &_setMode, "\tset the default operation single/multi AP (slow)");
-  term->add("scan", "", &_scanNetworks, "\tscan WiFi networks");
-  term->add("status", "", &_wifiStatus, "\tWiFi status information");
+  term->add("help", "", &_printHelp, "show detail usage information");
+  term->add("setSSID", "\"SSID\"" , &_setSSID, "set the Wifi SSID");
+  term->add("setPASW", "\"Password\"", &_setPASW, "set the WiFi password");
+  term->add("connect", "", &_connect, "save and connect to WiFi network");
+  term->add("list", "", &_listNetworks, "list saved WiFi networks");
+  term->add("select", "<number>", &_selectAP, "select the default AP (default: last)");
+  term->add("mode", "<single/multi>", &_setMode, "set the default operation single/multi AP (slow)");
+  term->add("scan", "", &_scanNetworks, "scan WiFi networks");
+  term->add("status", "", &_wifiStatus, "WiFi status information");
   term->add("disconnect", "", &_disconnect, "WiFi disconnect");
-  term->add("delete", "SSID", &_deleteNetwork, "\tremove saved WiFi network by SSID\r\n");
+  term->add("delete", "SSID", &_deleteNetwork, "remove saved WiFi network by SSID\r\n");
 }
 
 #if !defined(NO_GLOBAL_INSTANCES) && !defined(NO_GLOBAL_ESP32WIFICLI)

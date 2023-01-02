@@ -16,7 +16,7 @@
 class ESP32WifiCLICallbacks;
 
 class ESP32WifiCLI {
- public:
+public:
   Preferences cfg;
   maschinendeck::SerialTerminal* term;
   WiFiMulti wifiMulti;
@@ -56,14 +56,14 @@ class ESP32WifiCLI {
 
   void setCallback(ESP32WifiCLICallbacks* pcb);
 
- private:
-  String app_name;
-  String temp_ssid = "";
-  String temp_pasw = "";
+private:
+    String app_name;
+    String temp_ssid = "";
+    String temp_pasw = "";
 
-  String getNetKeyName(int net);
+    String getNetKeyName(int net);
 
-  ESP32WifiCLICallbacks* cb = nullptr;
+    ESP32WifiCLICallbacks* cb = nullptr;
 };
 
 class ESP32WifiCLICallbacks {

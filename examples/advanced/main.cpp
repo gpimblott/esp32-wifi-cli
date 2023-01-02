@@ -33,16 +33,6 @@ class mESP32WifiCLICallbacks : public ESP32WifiCLICallbacks {
       digitalWrite(LED_PIN, LOW);
     }
   }
-
-  void onHelpShow() {
-    // Enter your custom help here:
-    Serial.println("\r\nCustom commands:\r\n");
-    Serial.println("sleep <mode> <time> \tESP32 sleep mode (deep or light)");
-    Serial.println("echo \"message\" \t\tEcho the msg. Parameter into quotes");
-    Serial.println("setLED <PIN> \t\tconfig the LED GPIO for blink");
-    Serial.println("blink <times> <millis> \tLED blink x times each x millis");
-    Serial.println("reboot\t\t\tperform a soft ESP32 reboot");
-  }
 };
 
 /*********************************************************************
@@ -118,10 +108,10 @@ void setup() {
   pinMode(LED_PIN, OUTPUT);
 
   // Enter your custom commands:
-  wcli.term->add("sleep","", &sleep, "\t<mode> <time> ESP32 will enter to sleep mode");
-  wcli.term->add("echo", "", &echo, "\t\"message\" Echo the msg. Parameter into quotes");
-  wcli.term->add("setLED", "",  &setLED, "\t<PIN> config the LED GPIO for blink");
-  wcli.term->add("blink", "", &blink, "\t<times> <millis> LED blink x times each x millis");
+  wcli.term->add("sleep","<mode> <time>", &sleep, "\tESP32 will enter to sleep mode");
+  wcli.term->add("echo", "\"message\"", &echo, "\t Echo the msg. Parameter into quotes");
+  wcli.term->add("setLED", "<PIN>",  &setLED, "\tconfig the LED GPIO for blink");
+  wcli.term->add("blink", "<times> <millis>", &blink, "\tLED blink x times each x millis");
   wcli.term->add("reboot", "", &reboot, "\tperform a ESP32 reboot");
 }
 
